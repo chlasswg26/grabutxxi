@@ -9,7 +9,7 @@ Scraper StreamXXI a.k.a Cinemaindo Tempat Nonton &amp; Download Film Subtitle In
 
 
 ### Installation
-- git clone https://github.com/chlasswg26/grabutxxi
+- git clone https://github.com/chlasswg26/grabutxxi.git
 - open terminal based on project path (buka terminal di folder project yang sudah di clone)
 - run this code
 > composer require chlasswg26/chlassgrabber
