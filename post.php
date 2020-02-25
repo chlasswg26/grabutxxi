@@ -29,6 +29,8 @@ if (empty($query) && !isset($query))
     preg_match('/<div id="embed_holder">.*?src="(.*?)"/', $content[0], $stream_url);
     preg_match_all('/<li><a href="(.*?)"/', $content[0], $server_list);
     preg_match_all('/<li><a href=".*?">(\w+)<\/a>/', $content[0], $server_name);
+    preg_match_all('/href=".*?genres\/(.*?)\//', $content[0], $genre);
+    preg_match_all('/href=".*?country\/(.*?)\//', $content[0], $country);
     preg_match('/<span class="right">(\d+).*?<\/span>/', $content[0], $viewer);
     preg_match('/<\/span>\s+<a href="(.*?)" class="downloadlink"/', $content[0], $download);
     preg_match('/<div class="infomovie">\s+<img width="\d+" height="\d+" src="(.*?)"/', $content[0], $image);
@@ -41,6 +43,8 @@ if (empty($query) && !isset($query))
             'embed' => $stream_url[1],
             'list' => []
         ],
+        'genre' => [],
+        'country' => [],
         'viewer' => $viewer[1],
         'download' => $download[1],
         'image' => toBase64($image[1]),
@@ -52,6 +56,22 @@ if (empty($query) && !isset($query))
         $array['stream']['list'][] = [
             'server' => str_replace('?v=', '', $server_list[1][$i]),
             'provider' => strtoupper($server_name[1][$i])
+        ];
+    }
+
+    for ($i = 0; $i < count($genre[1]); $i++)
+    {
+        $array['genre'][] = [
+            'code' => base64_encode($genre[1][$i]),
+            'title' => ucwords(str_replace('-', ' ', $genre[1][$i]))
+        ];
+    }
+
+    for ($i = 0; $i < count($country[1]); $i++)
+    {
+        $array['country'][] = [
+            'code' => base64_encode($country[1][$i]),
+            'title' => ucwords(str_replace('-', ' ', $country[1][$i]))
         ];
     }
 
