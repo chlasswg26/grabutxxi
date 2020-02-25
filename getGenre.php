@@ -18,9 +18,10 @@ use simple_curl\curl;
     for ($i = 0; $i < count($genre[1]); $i++)
     {
         $array[] = [
-            'code' => base64_encode($genre[1][$i])
+            'code' => base64_encode(str_replace(' ', '-', $genre[1][$i])),
+            'title' => $genre[1][$i]
         ];
         
     }
 
-    echo json_encode($array, JSON_PRETTY_PRINT);
+    echo json_encode((object)$array, JSON_PRETTY_PRINT);

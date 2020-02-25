@@ -3,7 +3,7 @@ require_once('lib.function.php');
 
 use simple_curl\curl;
 
-$query = base64_decode($_GET['query']);
+$query = strtolower(base64_decode($_GET['query']));
 $page = $_GET['page'];
 
 if (empty($query) && !isset($query))
@@ -41,7 +41,7 @@ if (empty($query) && !isset($query))
         {
             preg_match('/<a class="next page-numbers" href=".*?page\/(\d)\//', $page[0], $next);
             preg_match('/<a class="prev page-numbers" href=".*?page\/(\d)\//', $page[0], $prev);
-            $array['page'][] = [
+            $array['page'] = [
                     'next' => $next[1],
                     'prev' => $prev[1]
             ];
@@ -56,5 +56,5 @@ if (empty($query) && !isset($query))
         ];
     }
 
-    echo json_encode($array, JSON_PRETTY_PRINT);
+    echo json_encode((object)$array, JSON_PRETTY_PRINT);
 }

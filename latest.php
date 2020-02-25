@@ -36,7 +36,7 @@ $page = $_GET['page'];
         {
             preg_match('/<a class="next page-numbers" href=".*?page\/(\d)\//', $page[0], $next);
             preg_match('/<a class="prev page-numbers" href=".*?page\/(\d)\//', $page[0], $prev);
-            $array['page'][] = [
+            $array['page'] = [
                     'next' => $next[1],
                     'prev' => $prev[1]
             ];
@@ -51,4 +51,4 @@ $page = $_GET['page'];
         ];
     }
 
-    echo json_encode($array, JSON_PRETTY_PRINT);
+    echo json_encode((object)$array, JSON_PRETTY_PRINT);

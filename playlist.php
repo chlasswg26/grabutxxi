@@ -16,7 +16,6 @@ $query = base64_decode($_GET['query']);
 
     preg_match_all('/<a class=".*?" rel=".*?" href="(.*?)"/', $content[0], $url);
     preg_match_all('/<div class="footerpost"><h2>(.*?)<\/h2>/', $content[0], $title);
-    dd($image[1]);
 
     $page = explode('<div class="pagination">', $response);
     $page = explode('</div>', $page[1]);
@@ -31,4 +30,4 @@ $query = base64_decode($_GET['query']);
         ];
     }
 
-    echo json_encode($array, JSON_PRETTY_PRINT);
+    echo json_encode((object)$array, JSON_PRETTY_PRINT);

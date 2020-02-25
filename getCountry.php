@@ -18,9 +18,10 @@ use simple_curl\curl;
     for ($i = 0; $i < count($country[1]); $i++)
     {
         $array[] = [
-            'code' => base64_encode($country[1][$i])
+            'code' => base64_encode(str_replace(' ', '-', $country[1][$i])),
+            'title' => $country[1][$i]
         ];
         
     }
 
-    echo json_encode($array, JSON_PRETTY_PRINT);
+    echo json_encode((object)$array, JSON_PRETTY_PRINT);
