@@ -6,7 +6,7 @@ use simple_curl\curl;
 $query = strtolower(base64_decode($_GET['query']));
 $page = $_GET['page'];
 
-if (empty($query) && !isset($query))
+if (empty($query) || !isset($query))
 {
     die();
 } else {
