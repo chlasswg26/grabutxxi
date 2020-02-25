@@ -5,6 +5,10 @@ use simple_curl\curl;
 
 $query = base64_decode($_GET['query']);
 
+if (empty($query) || !isset($query))
+{
+    die();
+} else {
     $snipe = URL . 'playlist/' . $query . '/';
 
     curl::prepare($snipe, NULL);
@@ -31,3 +35,4 @@ $query = base64_decode($_GET['query']);
     }
 
     echo json_encode((object)$array, JSON_PRETTY_PRINT);
+}
