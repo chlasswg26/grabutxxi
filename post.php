@@ -6,7 +6,7 @@ use simple_curl\curl;
 $query = base64_decode($_GET['query']);
 $server = $_GET['server'];
 
-if (empty($query) && !isset($query))
+if (empty($query) || !isset($query))
 {
     die();
 } else {
